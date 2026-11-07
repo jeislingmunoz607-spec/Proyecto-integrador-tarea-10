@@ -1,116 +1,123 @@
-# Sistema de Reporte de Fallas de Equipos de Cómputo
+Sistema de Reporte de Fallas de Computadoras de Laboratorio
 
-UNAN-León · Proyecto Integrador I · Hito 9 · CTIS25-SABE2-GP2
+Proyecto Integrador – Tarea 10
 
-1. Integrantes del equipo
+Descripción del proyecto
 
-- Gleyssi Nereyda Barrera Pérez
-- Andy Dayana Hernández Urrieta
-- Jeisling María Muñoz Vallejos
-- Alexandra Paola Lira Blandón
+El Sistema de Reporte de Fallas de Computadoras de Laboratorio es una aplicación web desarrollada para facilitar el registro, consulta y seguimiento de las fallas que presentan los equipos informáticos dentro de los laboratorios.
 
-2. Descripción del proyecto
+El sistema permite registrar nuevos reportes, consultar la información de las fallas y actualizar su estado cuando se registra una solución.
 
-El proyecto consiste en el diseño de un sistema para reportar y dar seguimiento a las fallas que presentan los equipos de cómputo de los laboratorios de la universidad. Su propósito es facilitar el registro de problemas, la consulta de reportes y el seguimiento de las soluciones.
+Tecnologías utilizadas
 
-En este Hito 9 se presenta el prototipo de las interfaces, la estructura inicial del proyecto, la documentación técnica y el diseño de la base de datos. La conexión completa entre las capas se desarrollará en el siguiente hito.
+- Python
+- Flask
+- MySQL
+- XAMPP
+- Visual Studio Code
+- mysql-connector-python
+- python-dotenv
 
-3. Enlace del prototipo en Figma
+Funcionalidades principales
 
-"Ver prototipo del Sistema de Reporte de Fallas" (https://www.figma.com/design/YlSnNloiDYtkuojdrUjIkb?node-id=6-5)
+- Registrar fallas: permite ingresar nuevos reportes indicando el equipo, la categoría y la descripción del problema.
+- Consultar reportes: permite visualizar los reportes registrados y acceder a sus detalles.
+- Registrar soluciones: permite agregar la solución aplicada a una falla.
+- Actualizar estados: permite cambiar el estado de un reporte a «Resuelto».
+- Almacenar información: guarda los reportes en una base de datos MySQL.
 
-El prototipo contiene diez pantallas editables que representan el recorrido principal del sistema, desde el acceso hasta el registro y seguimiento de las fallas. También incluye ejemplos de validaciones y consultas sin resultados.
+Arquitectura del proyecto
 
-4. Estructura del repositorio
+El sistema utiliza una arquitectura de tres capas para organizar el código y separar sus responsabilidades.
 
-docs/
 src/
-  presentation/
-  business/
-  data/
-tests/
-.gitignore
-README.md
+│
+├── business/
+│   ├── __init__.py
+│   └── logica.py
+│
+├── data/
+│   ├── __init__.py
+│   ├── almacenamiento.py
+│   └── conexion.py
+│
+├── presentation/
+│   ├── __init__.py
+│   └── app.py
+│
+└── probar_conexion.py
 
-Descripción de las carpetas
+Capa de presentación: contiene la aplicación Flask y la interfaz con la que interactúa el usuario.
 
-- docs/: contiene la documentación técnica, el modelo de datos, el script SQL y las evidencias del prototipo.
-- src/presentation/: contiene el código relacionado con la presentación e interfaces del sistema.
-- src/business/: destinada a la lógica de negocio y al procesamiento de las solicitudes.
-- src/data/: destinada a la administración y conexión con los datos.
-- tests/: contiene la documentación de las pruebas realizadas al sistema.
+Capa de lógica de negocio: procesa las operaciones y reglas relacionadas con los reportes.
 
-Las carpetas que contienen archivos ".gitkeep" se conservan para mantener la estructura del proyecto, aunque todavía no tengan código implementado.
+Capa de acceso a datos: administra la conexión con MySQL y las operaciones de almacenamiento, consulta y actualización.
 
-5. Documentación y evidencias
+Base de datos
 
-Dentro de la carpeta "docs/" se encuentran los siguientes recursos:
+El proyecto utiliza una base de datos MySQL llamada "reporte_fallas", organizada en las siguientes tablas:
 
-- Modelo_original_clase8.pdf: documento del modelo recuperado de la entrega de Classroom.
-- schema_derivado_clase8.sql: script DDL de MySQL elaborado a partir del diccionario de datos. Se identifica como un esquema derivado porque no se encontró un archivo SQL original en el documento adjunto.
-- PI1_Hito9_Memoria.docx y PDF: memoria técnica con la explicación de la arquitectura, el modelo de datos y las evidencias.
-- wireframes/: contiene los archivos SVG de las diez pantallas del prototipo.
-- evidencias/: contiene las capturas del trabajo realizado en Figma.
+- "laboratorios": almacena la información de los laboratorios.
+- "equipos": almacena los equipos registrados y su relación con los laboratorios.
+- "reportes": almacena los reportes de fallas, sus estados y soluciones.
 
-6. Recorrido del prototipo
+Instalación y configuración
 
-El recorrido principal del sistema es el siguiente:
+1. Instalar las dependencias
 
-1. Acceso al sistema.
-2. Visualización del tablero principal.
-3. Registro de una falla.
-4. Confirmación del reporte registrado.
-5. Consulta y seguimiento del reporte.
-6. Registro de la solución.
-7. Consulta de reportes mediante filtros.
+Desde la carpeta principal del proyecto, ejecutar:
 
-El prototipo también presenta ejemplos de validaciones y consultas sin resultados. Los campos y datos utilizados son simulados, por lo tanto, las pantallas representan el funcionamiento propuesto, pero no realizan autenticación ni almacenan información real.
+pip install -r requirements.txt
 
-7. Arquitectura del sistema
+2. Configurar MySQL
 
-El proyecto se organiza mediante una arquitectura de tres capas:
+Iniciar el servicio MySQL desde XAMPP y crear la base de datos:
 
-- Capa de presentación: encargada de mostrar las interfaces y permitir la interacción del usuario.
-- Capa de lógica de negocio: encargada de procesar las solicitudes y aplicar las reglas del sistema.
-- Capa de datos: encargada de almacenar, consultar y administrar la información.
+CREATE DATABASE reporte_fallas;
 
-Esta separación permite organizar el código y facilita el desarrollo y mantenimiento del sistema.
+Crear las tablas "laboratorios", "equipos" y "reportes" utilizando el script SQL del proyecto.
 
-8. Instalación y ejecución
+3. Configurar las variables de entorno
 
-Para ejecutar el sistema localmente se necesita tener Python instalado.
+Crear un archivo ".env" en la carpeta principal del proyecto con la siguiente estructura:
 
-Primero, se debe instalar Flask desde la terminal:
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=reporte_fallas
+FLASK_SECRET_KEY=colocar_una_clave_privada
 
-pip install Flask
+Completar los valores de acuerdo con la configuración local de MySQL.
 
-Después, desde la carpeta principal del proyecto, ejecutar:
+Importante: el archivo ".env" no debe subirse al repositorio, ya que contiene información privada de configuración.
 
-python src/presentation/app.py
+4. Ejecutar la aplicación
 
-Luego, abrir en el navegador la dirección local que muestra Flask, normalmente:
+Abrir una terminal dentro de la carpeta "src" y ejecutar:
+
+python -m presentation.app
+
+Luego abrir el navegador e ingresar a:
 
 http://127.0.0.1:5000
 
-9. Preparación para el siguiente hito
+Pruebas realizadas
 
-Para continuar con el desarrollo del proyecto se deberán realizar las siguientes actividades:
+Se realizaron pruebas para comprobar las principales operaciones del sistema:
 
-1. Clonar el repositorio y preparar el entorno de trabajo.
-2. Revisar la documentación de la arquitectura y el modelo de datos.
-3. Comparar el esquema SQL derivado con el documento original.
-4. Crear una base de datos vacía en MySQL y seleccionar su nombre antes de ejecutar el script DDL.
-5. Desarrollar las vistas, los servicios y los repositorios por separado.
-6. Implementar la conexión entre la capa de datos y la lógica de negocio.
+- Conexión exitosa entre Python y MySQL.
+- Registro de nuevos reportes.
+- Consulta de reportes almacenados.
+- Visualización de los detalles de cada reporte.
+- Registro de soluciones.
+- Actualización del estado de los reportes.
 
-El script SQL está preparado para MySQL 8.0.16 o posterior y no contiene instrucciones para eliminar tablas ni credenciales de acceso.
+Objetivo del proyecto
 
-10. Verificación y colaboración
+Facilitar la administración y el seguimiento de las fallas de los equipos informáticos de los laboratorios, mediante una aplicación web conectada a una base de datos que permita mantener la información organizada y accesible.
 
-La navegación del prototipo puede comprobarse desde la opción Presentar de Figma. El diseño de la base de datos se revisó tomando como referencia las ocho entidades del diccionario de datos; sin embargo, el script SQL todavía no se ha ejecutado en MySQL.
+---
 
-Cada integrante deberá aportar sus propios cambios y commits al repositorio, conservando el historial de trabajo del equipo. Para organizar los mensajes de confirmación se pueden utilizar los prefijos "docs:", "feat:" y "fix:".
+Proyecto Integrador – Tarea 10
 
-11. Estado actual del proyecto
-
-Este repositorio contiene la documentación, el prototipo de interfaces, el diseño de datos y la estructura inicial de las tres capas solicitadas para el Hito 9. La implementación completa y la conexión real entre la capa de datos y la lógica de negocio corresponden al siguiente hito.
+Ingeniería en Sistemas
