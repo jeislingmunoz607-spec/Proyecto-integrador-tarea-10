@@ -1,4 +1,3 @@
-
 from data.almacenamiento import obtener_reportes, buscar_reporte, guardar_reporte, actualizar_solucion
 
 
@@ -31,7 +30,7 @@ def registrar_reporte(equipo, categoria, descripcion):
         "categoria": categoria,
         "descripcion": descripcion,
         "estado": "Pendiente",
-        "fecha": "03/11/2026",
+        "fecha": "2026-11-06",
         "solucion": ""
     }
 
