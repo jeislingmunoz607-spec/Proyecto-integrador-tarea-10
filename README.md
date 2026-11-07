@@ -1,4 +1,4 @@
-##Sistema de Reporte de Fallas de Computadoras de Laboratorio
+Sistema de Reporte de Fallas de Computadoras de Laboratorio
 
 Proyecto Integrador – Tarea 10
 
@@ -57,9 +57,9 @@ Base de datos
 
 El proyecto utiliza una base de datos MySQL llamada "reporte_fallas", organizada en las siguientes tablas:
 
-- "laboratorios": almacena la información de los laboratorios.
-- "equipos": almacena los equipos registrados y su relación con los laboratorios.
-- "reportes": almacena los reportes de fallas, sus estados y soluciones.
+- laboratorios: almacena la información de los laboratorios.
+- equipos: almacena los equipos registrados y su relación con los laboratorios.
+- reportes: almacena los reportes de fallas, sus estados y soluciones.
 
 Instalación y configuración
 
@@ -89,7 +89,7 @@ FLASK_SECRET_KEY=colocar_una_clave_privada
 
 Completar los valores de acuerdo con la configuración local de MySQL.
 
-Importante: el archivo ".env" no debe subirse al repositorio, ya que contiene información privada de configuración.
+Importante: el archivo ".env" no debe subirse al repositorio, ya que contiene información privada de configuración. Se incluye un archivo ".env.example" como referencia para configurar las variables de entorno.
 
 4. Ejecutar la aplicación
 
@@ -121,3 +121,4 @@ Facilitar la administración y el seguimiento de las fallas de los equipos infor
 Proyecto Integrador – Tarea 10
 
 Ingeniería en Sistemas
+
