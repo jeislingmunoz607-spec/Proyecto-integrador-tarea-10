@@ -1,4 +1,4 @@
-Sistema de Reporte de Fallas de Computadoras de Laboratorio
+##Sistema de Reporte de Fallas de Computadoras de Laboratorio
 
 Proyecto Integrador – Tarea 10
 
